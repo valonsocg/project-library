@@ -1,8 +1,8 @@
 // take user’s input and store the new book objects into an array.
 
 const myLibrary = [
-  new Book("The Hobbit", "J.R.R. Tolkien", 295, "not"),
-  new Book("The Hobbit2", "J.R.R. Tolkien2", 296, "yes"),
+  new Book("The Hobbit", "J.R.R. Tolkien", 295, "no"),
+  new Book("The Lord of the Rings", "J.R.R. Tolkien", 596, "yes"),
 ];
 
 function Book(title, author, pages, isRead) {
@@ -11,7 +11,7 @@ function Book(title, author, pages, isRead) {
   this.pages = pages;
   this.isRead = isRead;
   this.info = function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, read ? ${this.isRead}`;
+    return `${this.title} by ${this.author}, ${this.pages} pages, did you read it ? ${this.isRead}`;
   };
 }
 
@@ -46,6 +46,11 @@ function displayBooks() {
 
     toggleRead.textContent =
       book.isRead === "yes" ? "Mark as Not Read" : "Mark as Read";
+    if (toggleRead.textContent === "Mark as Not Read") {
+      toggleRead.classList.add("gray-toggle");
+    } else {
+      toggleRead.classList.remove("gray-toggle");
+    }
     deleteBookBtn.textContent = "X";
     newBook.textContent = book.info();
 
@@ -107,7 +112,7 @@ confirmBtn.addEventListener("click", (event) => {
     titleInput.value,
     authorInput.value,
     pagesInput.value,
-    selectedRadio ? selectedRadio.value : "not"
+    selectedRadio ? selectedRadio.value : "no"
   );
   newBookDialog.close();
 });
