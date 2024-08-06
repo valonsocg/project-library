@@ -15,6 +15,10 @@ function Book(title, author, pages, isRead) {
   };
 }
 
+Book.prototype.toggleReadStatus = function () {
+  this.isRead = this.isRead === "yes" ? "no" : "yes";
+};
+
 function addBookToLibrary(title, author, pages, isRead) {
   let newBook = new Book(title, author, pages, isRead);
   myLibrary.push(newBook);
@@ -29,15 +33,26 @@ function displayBooks() {
     const bookCard = document.createElement("div");
     const newBook = document.createElement("div");
     const deleteBookBtn = document.createElement("button");
+    const toggleRead = document.createElement("button");
+
     deleteBookBtn.classList.add("delete-book-btn");
+    toggleRead.classList.add("toggle-status");
+
+    toggleRead.setAttribute("data-toggle-index", index);
     deleteBookBtn.setAttribute("data-index", index);
+
     bookCard.classList.add("book-card");
     newBook.classList.add("new-book");
+
+    toggleRead.textContent =
+      book.isRead === "yes" ? "Mark as Not Read" : "Mark as Read";
     deleteBookBtn.textContent = "X";
     newBook.textContent = book.info();
+
     books.appendChild(bookCard);
     bookCard.appendChild(newBook);
     bookCard.appendChild(deleteBookBtn);
+    bookCard.appendChild(toggleRead);
   });
 
   const deleteBookBtns = document.querySelectorAll(".delete-book-btn");
@@ -45,6 +60,16 @@ function displayBooks() {
     button.addEventListener("click", () => {
       const index = button.getAttribute("data-index");
       deleteBook(index);
+      displayBooks();
+    });
+  });
+
+  const toggleReadBtns = document.querySelectorAll(".toggle-status");
+  toggleReadBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      const toggleIndex = button.getAttribute("data-toggle-index");
+      const bookToToggle = myLibrary[toggleIndex];
+      bookToToggle.toggleReadStatus();
       displayBooks();
     });
   });
