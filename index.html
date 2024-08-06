@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./script.js" defer></script>
+    <header>
+      <h1>My Library</h1>
+      <dialog id="dialog">
+        <form>
+          <ul>
+            <li>
+              <label for="title">Title</label
+              ><input id="title" name="title" type="text" />
+            </li>
+            <li>
+              <label for="author">Author</label
+              ><input id="author" name="author" type="text" />
+            </li>
+            <li>
+              <label for="pages">Pages</label
+              ><input id="pages" name="pages" type="text" />
+            </li>
+            <li>
+              <fieldset id="radio-read">
+                <legend>Did you read it?</legend>
+                <div>
+                  <input id="read" name="option" type="radio" value="yes" />
+                  <label for="read">Read</label>
+                </div>
+                <div>
+                  <input id="not-read" name="option" type="radio" value="no" />
+                  <label for="not-read">Not Read</label>
+                </div>
+              </fieldset>
+            </li>
+          </ul>
+          <div class="dialog-buttons">
+            <button value="cancel" formmethod="dialog">Cancel</button>
+            <button id="confirmBtn" value="default">Confirm</button>
+          </div>
+        </form>
+      </dialog>
+      <button type="button" id="addNewBook">Add New Book</button>
+      <output></output>
+    </header>
+    <main>
+      <div class="books"></div>
+    </main>
+  </body>
+</html>
