@@ -25,15 +25,33 @@ function displayBooks() {
   const books = document.querySelector(".books");
   books.textContent = "";
 
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
     const bookCard = document.createElement("div");
     const newBook = document.createElement("div");
+    const deleteBookBtn = document.createElement("button");
+    deleteBookBtn.classList.add("delete-book-btn");
+    deleteBookBtn.setAttribute("data-index", index);
     bookCard.classList.add("book-card");
     newBook.classList.add("new-book");
+    deleteBookBtn.textContent = "X";
     newBook.textContent = book.info();
     books.appendChild(bookCard);
     bookCard.appendChild(newBook);
+    bookCard.appendChild(deleteBookBtn);
   });
+
+  const deleteBookBtns = document.querySelectorAll(".delete-book-btn");
+  deleteBookBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = button.getAttribute("data-index");
+      deleteBook(index);
+      displayBooks();
+    });
+  });
+}
+
+function deleteBook(index) {
+  myLibrary.splice(index, 1);
 }
 
 displayBooks();
@@ -53,14 +71,6 @@ const confirmBtn = document.querySelector("#confirmBtn");
 addNewBookBtn.addEventListener("click", () => {
   newBookDialog.showModal();
 });
-
-//cancel button
-// newBookDialog.addEventListener("close", (e) => {
-//   outputBox.value =
-//     newBookDialog.returnValue === "default"
-//       ? "no return value"
-//       : `ReturnValue: ${newBookDialog.returnValue}`;
-// });
 
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
 confirmBtn.addEventListener("click", (event) => {
