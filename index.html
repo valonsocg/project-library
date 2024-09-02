@@ -15,21 +15,41 @@
           <ul>
             <li>
               <label for="title">Title</label
-              ><input id="title" name="title" type="text" />
+              ><input
+                id="title"
+                name="title"
+                type="text"
+                required
+                minlength="3"
+                maxlength="50"
+              />
             </li>
             <li>
               <label for="author">Author</label
-              ><input id="author" name="author" type="text" />
+              ><input
+                id="author"
+                name="author"
+                type="text"
+                required
+                minlength="3"
+                maxlength="50"
+              />
             </li>
             <li>
               <label for="pages">Pages</label
-              ><input id="pages" name="pages" type="text" />
+              ><input id="pages" name="pages" type="number" required />
             </li>
             <li>
               <fieldset id="radio-read">
                 <legend>Did you read it?</legend>
                 <div>
-                  <input id="read" name="option" type="radio" value="yes" />
+                  <input
+                    id="read"
+                    name="option"
+                    type="radio"
+                    value="yes"
+                    required
+                  />
                   <label for="read">Read</label>
                 </div>
                 <div>
@@ -40,8 +60,12 @@
             </li>
           </ul>
           <div class="dialog-buttons">
-            <button value="cancel" formmethod="dialog">Cancel</button>
-            <button id="confirmBtn" value="default">Confirm</button>
+            <button id="cancelBtn" value="cancel" formmethod="dialog">
+              Cancel
+            </button>
+            <button id="confirmBtn" type="submit" value="default">
+              Confirm
+            </button>
           </div>
         </form>
       </dialog>

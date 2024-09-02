@@ -96,6 +96,7 @@ const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 
 const confirmBtn = document.querySelector("#confirmBtn");
+const cancelBtn = document.querySelector("#cancelBtn");
 
 //show dialog
 addNewBookBtn.addEventListener("click", () => {
@@ -105,14 +106,22 @@ addNewBookBtn.addEventListener("click", () => {
 // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  const selectedRadio = document.querySelector(
-    '#radio-read input[type="radio"]:checked'
-  );
-  addBookToLibrary(
-    titleInput.value,
-    authorInput.value,
-    pagesInput.value,
-    selectedRadio ? selectedRadio.value : "no"
-  );
+  if (newBookDialog.querySelector("form").reportValidity()) {
+    const selectedRadio = document.querySelector(
+      '#radio-read input[type="radio"]:checked'
+    );
+    addBookToLibrary(
+      titleInput.value,
+      authorInput.value,
+      pagesInput.value,
+      selectedRadio ? selectedRadio.value : "no"
+    );
+    newBookDialog.querySelector("form").reset();
+    newBookDialog.close();
+  }
+});
+
+cancelBtn.addEventListener("click", () => {
+  newBookDialog.querySelector("form").reset();
   newBookDialog.close();
 });

@@ -47,11 +47,14 @@ input[type="submit"]:hover {
 }
 
 dialog {
+  position: fixed;
   border: none;
   border-radius: 8px;
   padding: 1rem;
   background-color: #2e2e2e;
   color: #e0e0e0;
+  top: 15%;
+  left: 45%;
 }
 
 form {
